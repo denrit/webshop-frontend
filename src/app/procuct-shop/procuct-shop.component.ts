@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../model/product';
+import { RestConnectionService } from '../services/rest-connection.service';
 
 @Component({
   selector: 'app-procuct-shop',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProcuctShopComponent implements OnInit {
 
-  constructor() { }
+  constructor(private restService: RestConnectionService) { }
+
+  displayedColumns: string[] = ['name', 'price', 'description', 'buyBtn'];
+  dataSource;
 
   ngOnInit() {
+    this.restService.getProducts().subscribe((data: Product[]) => {
+      this.dataSource = data;
+    });
+  }
+  
+  buy(id: number) {
+    this.restService.moveToCart(id);
   }
 
 }
