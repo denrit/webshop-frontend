@@ -23,12 +23,13 @@ export class RestConnectionService {
     return products;
   }
 
-  moveToCart(productId: number) {
-    this.http.post<Product>('http://localhost:8080/addToCart', productId);
+  moveToCart(productId: string) {
+    let returnValue = this.http.post<any>('http://localhost:8080/addToCart', productId);
+    console.log(returnValue);
   }
 
-  deleteFromCart(productId: number) {
-    this.http.post<Product>('http://localhost:8080/deleteFromCart', productId);
+  deleteFromCart(productId: string) {
+    this.http.post<any>('http://localhost:8080/deleteFromCart', productId);
   }
   
 
