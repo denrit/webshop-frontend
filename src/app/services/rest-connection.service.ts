@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../model/product';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,12 @@ import {HttpClient} from '@angular/common/http';
 export class RestConnectionService {
   onInit() {
   }
+
+  // httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type':  'text'
+  //   })
+  // };
 
   constructor(private http: HttpClient) {
     this.onInit();
@@ -24,7 +30,7 @@ export class RestConnectionService {
   }
 
   moveToCart(productId: string) {
-    let returnValue = this.http.post<any>('http://localhost:8080/addToCart', productId);
+    let returnValue = this.http.post<string>('http://localhost:8080/addToCart', productId);
     console.log(returnValue);
   }
 
