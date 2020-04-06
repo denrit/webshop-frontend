@@ -23,7 +23,9 @@ export class ProcuctShopComponent implements OnInit {
   buy(id: number) {
     let stringId = `${id}`;
     alert(stringId);
-    this.restService.moveToCart(stringId);
+    this.restService.moveToCart(stringId).subscribe(() => {
+      console.log("it worked");
+    });
   }
 
 }

@@ -56,7 +56,9 @@ export class ShoppingCartComponent implements OnInit {
   remove(id: number) {
     let stringId = `${id}`;
     alert(stringId);
-    this.restService.deleteFromCart(stringId);
+    this.restService.deleteFromCart(stringId).subscribe(() => {
+      console.log("it worked");
+    });
   }
 
 }
